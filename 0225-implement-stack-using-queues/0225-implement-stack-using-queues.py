@@ -6,11 +6,9 @@ class MyStack:
         self.queue = collections.deque()        
 
     def push(self, x: int) -> None:
-        self.queue.append(x)
         
-        for _ in range(len(self.queue) - 1):
-            self.queue.append(self.queue.popleft())
-
+        return self.queue.insert(0,x)
+        
     def pop(self) -> int:
         return self.queue.popleft()
 
