@@ -1,22 +1,25 @@
+import sys
+
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-
-        left, right = 0, len(height) - 1
-
-        max_volume = 0
-
+        left = 0
+        right = len(height) - 1
+        max_vol = -sys.maxsize
+        
         while left < right:
-            min_height = min(height[right], height[left])
             length = right - left
-            volume = min_height * length
-            max_volume = max(max_volume, volume)
-
-            if height[left] < height[right]:
+            
+            cur_vol = length * min(height[right], height[left])
+            
+            if cur_vol > max_vol:
+                max_vol = cur_vol
+                
+            if height[right] > height[left]:
                 left += 1
             else:
                 right -= 1
-
-        return max_volume
+        
+        return max_vol
 
         
         
